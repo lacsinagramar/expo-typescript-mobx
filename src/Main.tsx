@@ -1,25 +1,28 @@
 import React, { useContext } from 'react'
 import { observer } from 'mobx-react-lite'
-import { Button, Text, View } from 'react-native-ui-lib'
+import { Button, Text, Layout } from '@ui-kitten/components'
 
 import { RootStoreContext } from './store/RootStore'
 import { ToDo } from './store/ToDoStore'
+
+import PageWrapper from './components/PageWrapper'
+
 import styles from './styles'
 
 const Main = observer(() => {
   const { toDoStore } = useContext(RootStoreContext)
   const { todos, addToDo } = toDoStore
   return (
-    <View style={styles.mainContainer}>
+    <PageWrapper pageTitle="To Do">
       {todos.map((todo: ToDo) => (
-        <View key={todo.id}>
+        <Layout key={todo.id}>
           <Text>{todo.description}</Text>
-        </View>
+        </Layout>
       ))}
       <Button onPress={() => addToDo('To Do 2')}>
-        <Text>Add Todo</Text>
+        Add Todo
       </Button>
-    </View>
+    </PageWrapper>
   )
 })
 
