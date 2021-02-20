@@ -1,26 +1,25 @@
-import React, { useContext } from 'react'
-import { observer } from 'mobx-react-lite'
-import { Button, Text, View } from 'react-native-ui-lib'
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 
-import { RootStoreContext } from './store/RootStore'
-import { ToDo } from './store/ToDoStore'
-import styles from './styles'
+import Home from './containers/Home'
+import Landing from './containers/Landing'
 
-const Main = observer(() => {
-  const { toDoStore } = useContext(RootStoreContext)
-  const { todos, addToDo } = toDoStore
+const Stack = createStackNavigator()
+
+const Main = () => {
   return (
-    <View style={styles.mainContainer}>
-      {todos.map((todo: ToDo) => (
-        <View key={todo.id}>
-          <Text>{todo.description}</Text>
-        </View>
-      ))}
-      <Button onPress={() => addToDo('To Do 2')}>
-        <Text>Add Todo</Text>
-      </Button>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Landing"
+          component={Landing}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="Home" component={Home} />
+      </Stack.Navigator>
+    </NavigationContainer>
   )
-})
+}
 
 export default Main
