@@ -1,29 +1,25 @@
-import React, { useContext } from 'react'
-import { observer } from 'mobx-react-lite'
-import { Button, Text, Layout } from '@ui-kitten/components'
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 
-import { RootStoreContext } from './store/RootStore'
-import { ToDo } from './store/ToDoStore'
+import Home from './containers/Home'
+import Landing from './containers/Landing'
 
-import PageWrapper from './components/PageWrapper'
+const Stack = createStackNavigator()
 
-import styles from './styles'
-
-const Main = observer(() => {
-  const { toDoStore } = useContext(RootStoreContext)
-  const { todos, addToDo } = toDoStore
+const Main = () => {
   return (
-    <PageWrapper pageTitle="To Do">
-      {todos.map((todo: ToDo) => (
-        <Layout key={todo.id}>
-          <Text>{todo.description}</Text>
-        </Layout>
-      ))}
-      <Button onPress={() => addToDo('To Do 2')}>
-        Add Todo
-      </Button>
-    </PageWrapper>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Landing"
+          component={Landing}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="Home" component={Home} />
+      </Stack.Navigator>
+    </NavigationContainer>
   )
-})
+}
 
 export default Main

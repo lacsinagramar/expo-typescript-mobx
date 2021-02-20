@@ -10,7 +10,7 @@ export class ToDoStore {
   todos: ToDo[] = [
     {
       id: 1,
-      description: 'To do 1',
+      description: 'Default To Do',
       isComplete: false
     }
   ]
@@ -18,7 +18,8 @@ export class ToDoStore {
   constructor() {
     makeObservable(this, {
       todos: observable,
-      addToDo: action
+      addToDo: action,
+      toggleToDo: action
     })
   }
 
@@ -29,5 +30,13 @@ export class ToDoStore {
       isComplete: false
     }
     this.todos.push(toDoItem)
+  }
+
+  toggleToDo = (id: number) => {
+    const toDoIndex = this.todos.findIndex(
+      todo => todo.id === id
+    )
+    this.todos[toDoIndex].isComplete = !this.todos[toDoIndex]
+      .isComplete
   }
 }

@@ -1,23 +1,30 @@
 import React, { ReactNode } from 'react'
 import { View } from 'react-native'
-import { Layout } from '@ui-kitten/components'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
-import Header from '../Header'
+import { FullView, Wrapper } from './components'
 
 interface PageWrapperProps {
-  pageTitle: string
   children: ReactNode
+  noHeader?: boolean
+  removeScroll?: boolean
 }
 
 const PageWrapper = ({
-  pageTitle,
-  children
+  children,
+  noHeader = false,
+  removeScroll = false
 }: PageWrapperProps) => {
   return (
-    <View>
-      <Header title={pageTitle} />
-      <View>{children}</View>
-    </View>
+    <Wrapper noHeader={noHeader}>
+      {removeScroll ? (
+        <FullView>{children}</FullView>
+      ) : (
+        <KeyboardAwareScrollView>
+          <View style={{ padding: 20 }}>{children}</View>
+        </KeyboardAwareScrollView>
+      )}
+    </Wrapper>
   )
 }
 
