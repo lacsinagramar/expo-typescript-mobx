@@ -1,15 +1,14 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import { View } from 'react-native'
 
-import { RootStoreContext } from '../../store/RootStore'
-import { ToDo as ToDoInterface } from '../../store/ToDoStore'
+import { ToDo as ToDoInterface } from 'src/store/ToDoStore'
 
-import { $white } from '../../utils/colors'
+import { $white } from 'src/utils/colors'
 
-import PageWrapper from '../../components/PageWrapper'
-import H1 from '../../components/H1'
-import Paragraph from '../../components/Paragraph'
+import PageWrapper from 'src/components/PageWrapper'
+import H1 from 'src/components/H1'
+import Paragraph from 'src/components/Paragraph'
 
 import ToDo from './ToDo'
 import {
@@ -17,13 +16,16 @@ import {
   AddToDoInput,
   AddToDoWrapper
 } from './components'
+import useHomeScreenPresenter from './presenter'
 
 const Home = observer(() => {
-  const { toDoStore, userInfoStore } = useContext(
-    RootStoreContext
-  )
-  const { todos, addToDo, toggleToDo } = toDoStore
-  const { firstName, lastName } = userInfoStore
+  const {
+    firstName,
+    lastName,
+    toDos,
+    addToDo,
+    toggleToDo
+  } = useHomeScreenPresenter()
 
   const [toDoInputValue, setToDoInputValue] = useState<string>(
     ''
@@ -60,7 +62,7 @@ const Home = observer(() => {
         <Paragraph fontSize={18}>
           Here is the list of your tasks:
         </Paragraph>
-        {todos.map((todo: ToDoInterface) => (
+        {toDos.map((todo: ToDoInterface) => (
           <ToDo
             key={todo.id}
             description={todo.description}

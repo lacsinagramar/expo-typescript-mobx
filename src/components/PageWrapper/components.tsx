@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 
-import { StatusBarHeight } from '../../utils/deviceDimensions'
+import { StatusBarHeight } from 'src/utils/deviceDimensions'
 
 interface WrapperProps {
   noHeader: boolean

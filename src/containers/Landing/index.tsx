@@ -1,22 +1,20 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import { useNavigation } from '@react-navigation/native'
 
-import { $white, $red } from '../../utils/colors'
+import { $white, $red } from 'src/utils/colors'
 
-import { RootStoreContext } from '../../store/RootStore'
-
-import H1 from '../../components/H1'
-import Button from '../../components/Button'
-import PageWrapper from '../../components/PageWrapper'
-import Paragraph from '../../components/Paragraph'
-import TextInput from '../../components/TextInput'
+import H1 from 'src/components/H1'
+import Button from 'src/components/Button'
+import PageWrapper from 'src/components/PageWrapper'
+import Paragraph from 'src/components/Paragraph'
+import TextInput from 'src/components/TextInput'
 
 import { LandingView } from './components'
+import useLandingScreenPresenter from './presenter'
 
 const Landing = observer(() => {
-  const { userInfoStore } = useContext(RootStoreContext)
-  const { updateUserInfo } = userInfoStore
+  const { enterApp } = useLandingScreenPresenter()
 
   const navigation = useNavigation()
 
@@ -27,7 +25,7 @@ const Landing = observer(() => {
   const enterAppButtonPress = () => {
     const valid = firstName.length && lastName.length
     if (valid) {
-      updateUserInfo({ firstName, lastName })
+      enterApp({ firstName, lastName })
       setShowError(false)
       return navigation.navigate('Home')
     }

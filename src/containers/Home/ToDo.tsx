@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { $primary } from '../../utils/colors'
+import { $primary } from 'src/utils/colors'
 
-import Checkbox from '../../components/Checkbox'
-import Paragraph from '../../components/Paragraph'
+import Checkbox from 'src/components/Checkbox'
+import Paragraph from 'src/components/Paragraph'
 
 import { ToDoWrapper } from './components'
 

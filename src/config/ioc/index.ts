@@ -1,0 +1,1 @@
+export { getRootContainer } from './root'

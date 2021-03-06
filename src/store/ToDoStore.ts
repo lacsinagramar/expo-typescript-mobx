@@ -1,3 +1,4 @@
+import { injectable } from 'inversify'
 import { action, makeObservable, observable } from 'mobx'
 
 export interface ToDo {
@@ -6,6 +7,7 @@ export interface ToDo {
   isComplete: boolean
 }
 
+@injectable()
 export class ToDoStore {
   todos: ToDo[] = [
     {
@@ -23,19 +25,11 @@ export class ToDoStore {
     })
   }
 
-  addToDo = (description: string) => {
-    const toDoItem: ToDo = {
-      id: this.todos.length + 1,
-      description,
-      isComplete: false
-    }
+  addToDo = (toDoItem: ToDo) => {
     this.todos.push(toDoItem)
   }
 
-  toggleToDo = (id: number) => {
-    const toDoIndex = this.todos.findIndex(
-      todo => todo.id === id
-    )
+  toggleToDo = (toDoIndex: number) => {
     this.todos[toDoIndex].isComplete = !this.todos[toDoIndex]
       .isComplete
   }

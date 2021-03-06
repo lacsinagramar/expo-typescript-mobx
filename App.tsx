@@ -1,3 +1,4 @@
+import 'reflect-metadata'
 import React from 'react'
 
 import Main from './src/Main'

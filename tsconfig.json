@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
     "jsx": "react-native",
     "lib": ["dom", "esnext"],
     "moduleResolution": "node",
@@ -8,6 +9,11 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "strict": true,
-    "noImplicitAny": true
+    "target": "es5",
+    "types": ["reflect-metadata"],
+    "noImplicitAny": true,
+    "paths": {
+      "src/*": ["./src/*"]
+    }
   }
 }

@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 
-import Button from '../../components/Button'
-import TextInput from '../../components/TextInput'
+import Button from 'src/components/Button'
+import TextInput from 'src/components/TextInput'
 
 export const ToDoWrapper = styled.View`
   flex-direction: row;

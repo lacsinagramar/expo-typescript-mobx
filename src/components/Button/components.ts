@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 
-import { $primary } from '../../utils/colors'
+import { $primary } from 'src/utils/colors'
 
 interface StyledTouchableProps {
   variant: string

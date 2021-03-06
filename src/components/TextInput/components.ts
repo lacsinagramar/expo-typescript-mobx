@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 
-import { $black } from '../../utils/colors'
+import { $black } from 'src/utils/colors'
 
 interface StyledInputProps {
   removeMargin: boolean
